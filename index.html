@@ -40,7 +40,7 @@
  <script>
    function validateForm() {
      let valid = true;
-     let errorMessage= 'please answer all questions before moving on';
+     let errorMessage= 'Please answer all questions before moving on';
 
 
      const userAnswers = [
@@ -57,7 +57,7 @@
      for (let i = 0; i < userAnswers.length; i++) {
        if (userAnswers[i] === "") {
          valid = false;
-         document.getElementById(questionIds[i] + "Error").innerText = "uhhh youre not done yet ! Please answer all questions.";
+         document.getElementById(questionIds[i] + "Error").innerText = "uhhh youre not done yet! Please answer all questions.";
        } else {
          document.getElementById(questionIds[i] + "Error").innerText = "";
        }
@@ -67,8 +67,8 @@
      if (valid) {
        calculateCompatibility();
      } else {
-       errorMessage = "uhhh youre not done yet ! Please answer all questions.";
-       alert(errorMessage) ;
+       errorMessage = "uhhh youre not done yet! Please answer all questions.";
+       alert(errorMessage);
      }
 
      return valid;
@@ -87,14 +87,14 @@
      let compatibilityScore = 0;
 
 
-     for (let i = 0; i < userAnswers.lengh; i++) {
+     for (let i = 0; i < userAnswers.length; i++) {
        let difference = Math.abs(userAnswers[i] - myAnswers[i]);
        let questionScore = (1 - difference / 4) * 100;
        compatibilityScore += questionScore;
 
-       document.getElementById('question${i + 1}Score').innerText =
-         'Question ${i  + 1} Compatibility Score:  ${questionScore.toFixed(2)}%';
-
+       document.getElementById(`question${i + 1}Score`).innerText =
+         `Question ${i  + 1} Compatibility Score:  ${questionScore.toFixed(2)}%`;
+     
      }
 
      const averageCompatibility = compatibilityScore / userAnswers.length;
@@ -116,7 +116,7 @@
 
 
      document.getElementById("compatibilityResult").innerText =
-             'The right place for you is: ${averageCompatibility.toFixed(2)}%. ${compatibilityMessage}';
+             `The right place for you is: ${averageCompatibility.toFixed(2)}%. ${compatibilityMessage}`;
 
       }
    
