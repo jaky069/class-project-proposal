@@ -37,4 +37,186 @@
     
 
 
- <   
+ <script>
+   function validateForm() {
+     let valid = true;
+     let errorMessage= 'please answer all questions before moving on';
+
+
+     const userAnswers = [
+       document.getElementById("q1").value,
+       document.getElementById("q2").value,
+       document.getElementById("q3").value,
+       document.getElementById("q4").value,
+       document.getElementById("q5").value
+    ];
+
+     const questionIds = ["q1", "q2" , "q3 , "q4" , "q5"];
+
+
+     for (let i = 0; i < userAnswers. length; i++) {
+       if (userAnswers [i] === "") {
+         valid= false;
+         document.getElementById(questionIds [i] + "Error").innerText = "uhhh youre not done yet ! Please answer all questions.";
+       } else {
+         document.getElementById(questionIds [i] + "Error").innerText = "";
+       }
+
+     }
+
+     if (valid) {
+       calculateCompatibility();
+     } else {
+       errorMessage = "uhh youre not done yet ! Please answer all questions.";
+       alert(errorMessage) ;
+     }
+
+     return valid;
+   }
+
+   function calculateCompatibility() {
+     const userAnswers = [
+       parseInt(document.getElementById("q1").value) ,
+       parseInt(document.getElementById("q2").value) ,
+       parseInt(document.getElementById("q3").value) ,
+       parseInt(document.getElementById("q4").value) ,
+       parseInt(document.getElementById("q5").value)
+  ];
+
+     const myAnswers = [5, 5, 5, 5, 5];
+     let compatibilityScore = 0;
+
+
+     for (let i = 0; i < userAnswers.lengh; i++) {
+       let difference = Math.abs(userAnswers[i] - myAnswers[i]);
+       let questionScore = (1 - difference / 4) * 100;
+       compatibilityScore += questionScore;
+
+       document.getElementById('question${i + 1}Score').innerText =
+         'Question $ {i  + 1} Compatibility Score:  ${questionScore.toFixed(2)}%';
+
+     }
+
+     const averageCompatibility = compatibilityScore / userAnswers.length;
+
+     let compatibilityMessage;
+           if (averageCompatibility === 100) {
+             compatibilityMessage = "Looks like Spain is the right place for you!.";
+           } else if (averageCompatibility >= 80) {
+             compatibilityMessage = "Looks like Egypt is the right place for you!.";
+           } else if (averageCompatibility >= 60) {
+             compatibilityMessage = "Looks like Greece is the right place for you!.";
+           } else if (averageCompatibility >= 40) {
+             compatibilityMessage = "Looks like Mexico is the right place for you!.";
+           } else if (averageCompatibility >= 20) {
+             compatibilityMessage = "Looks like Canada is the right place for you!.";
+           } else {
+             compatibilityMessage = "Looks like United States is the right place for you!";
+           }
+
+
+     document.getElementById("compatibilityResult").innerText =
+             'The right place for you is: ${averageCompatibility.toFixed(2)}%. ${compatibilityMessage}';
+
+      }
+   
+ </script>  
+
+  </head>
+  <body>
+
+     <div class= "container">
+
+     <h1>Lets fid the right place for you to travel </h1>
+
+
+      <h3> Instructions:</h3>
+      <p>Please answer all questions and we will find the right place for you to travel to</p>
+
+    <div class="question-container">
+      <label>Hot weather does not bother me at all!</label><br />
+      <select id="q1">
+        <option value="">Please select your answer</option>
+        <option value="1">No I absolutely dont like hot weather</option>
+        <option value="5">Yes I love Hot weather it is my favorite</option>
+        <option value="3">Ehh I dont really care for hot weather</option>
+        <option value="2">I mean I dont like it but I dont hate it</option>
+        <option value="4">I like hot weather!</option>
+      </select>
+      <div id="q1Error" class="error"></div>
+    </div>
+
+
+  <div class="question-container">
+    <label>Agriculture is one of my favorite things to see</label><br />
+    <select id="q2">
+      <option value="">Please select your answer</option>
+      <option value="4">I love agriculture is one of my favorite things</option>
+      <option value="3">I dont really mind it sometimes I like looking at it</option>
+      <option value="5">YESS it is one of the reasons I like to travel and explore</option>
+      <option value="2">Eh it could get boring to me sometimes</option>
+      <option value="1">Nope I dont like</option>
+    </select>
+    <div id="q2Error" class="error"></div>
+  </div>
+
+
+  <div class="question-container">
+    <label>I love exploring places with beaches</label><br />
+    <select id="q3">
+      <option value="">Please select your answer</option>
+      <option value="1">Nope its not my cup of tea</option>
+      <option value="4">I love going to places that have beautiful beaches</option>
+      <option value="3">Im neutral in this manner</option>
+      <option value="5">Yess what even is a vacation without going to the beach</option>
+      <option value="2">Ehh I dont care for beaches they are ok</option>
+    </select>
+    <div id="q3Error" class="error"></div>
+  </div>
+
+
+  <div class="question-container">
+    <label>Eating and trying different food is what makes me want to travel</label><br />
+    <select id="q4">
+      <option value="">Please select your answer</option>
+      <option value="2">Im neutral in trying new foods</option>
+      <option value="5">Yesss this is the reason why I love to travel</option>
+      <option value="4">Absolutely my favorite thing to do when traveling</option>
+      <option value="3">Yes I like to try different foods</option>
+      <option value="1">Eh I dont mind new food they are whatever to me</option>
+    </select>
+    <div id="q4Error" class="error"></div>
+  </div>
+
+
+    <div class="question-container">
+      <label>I enjoy spending time in the plaza shoping when traveling</label><br />
+      <select id"q5">
+        <option value="">Please select your answer</option>
+        <option value="1">Ehh I dont mind none of this </option>
+        <option value="3">Yess this is what I like to do when traveling</option>
+        <option value="5">This is one of the reasons I love to travel! </option>
+        <option value="4">Yesss this is my favorite thing to do!</option>
+        <option value="2">I mean I like exploring but shopping uhhh</option>
+      </select>
+      <div id=q5Error" class="error"></div>
+    </div>
+
+
+     <button onclick="validateForm()">Calculate Compatibility</button>
+     <p> id="compatibilityResult"></p>
+
+
+     <h3>The right place for your to travel summary:</h3>
+     <div id="question1Score"></div>
+     <div id="question2Score"></div>
+     <div id="question3Score"></div>
+     <div id="question4Score"></div>
+     <div id="question5Score"></div>
+
+
+  </div>
+      
+    
+  </body>
+</html>
