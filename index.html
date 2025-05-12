@@ -51,7 +51,7 @@
        document.getElementById("q5").value
     ];
 
-     const questionIds = ["q1", "q2", "q3, "q4", "q5"];
+     const questionIds = ["q1", "q2", "q3", "q4", "q5"];
 
 
      for (let i = 0; i < userAnswers.length; i++) {
@@ -67,7 +67,7 @@
      if (valid) {
        calculateCompatibility();
      } else {
-       errorMessage = "youre not done yet please answer all questions.";
+       errorMessage = "Youre not done yet please answer all questions.";
        alert(errorMessage);
      }
 
@@ -101,17 +101,17 @@
 
      let compatibilityMessage;
            if (averageCompatibility === 100) {
-             compatibilityMessage = "Looks like Spain is the right place for you!.";
+             compatibilityMessage = "You will enjoy Spain it is the right place for you!.";
            } else if (averageCompatibility >= 80) {
-             compatibilityMessage = "Looks like Egypt is the right place for you!.";
+             compatibilityMessage = "The pyramids of Egypt are waiting for you!.";
            } else if (averageCompatibility >= 60) {
-             compatibilityMessage = "Looks like Greece is the right place for you!.";
+             compatibilityMessage = "The blue water of Greece is waiting for you!.";
            } else if (averageCompatibility >= 40) {
-             compatibilityMessage = "Looks like Mexico is the right place for you!.";
+             compatibilityMessage = "Mexico Mexico is ready to show you what its all about!.";
            } else if (averageCompatibility >= 20) {
-             compatibilityMessage = "Looks like Canada is the right place for you!.";
+             compatibilityMessage = "Toronto is waiting for you!.";
            } else {
-             compatibilityMessage = "Looks like United States is the right place for you!";
+             compatibilityMessage = "USA USA is waiting for you to let you know what its all about!";
            }
 
 
